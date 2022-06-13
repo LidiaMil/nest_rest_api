@@ -10,13 +10,11 @@ export class ProductsController {
 
     }
     @Get()
-    @HttpCode(HttpStatus.OK)
     getAll(){
         return this.productService.getAll()
     }
 
     @Get(':id')
-    @HttpCode(HttpStatus.OK)
     getOne(@Param('id') id: string){
         return this.productService.getById(id)
     }
@@ -28,17 +26,13 @@ export class ProductsController {
     }
 
     @Delete(':id')
-    @HttpCode(HttpStatus.OK)
     remove(@Param('id') id:string){
-        return `Remove`+ id
+        return this.productService.remove(id)
     }
 
 
     @Put(':id')
-    @HttpCode(HttpStatus.OK)
     update(@Param('id') id:string, @Body() updateProduct: UpdateProductDto){
-        return `UPDAAATE: ${id}
-                Title: ${updateProduct.title}
-                Price: ${updateProduct.price}`
+        return this.productService.update(id, updateProduct)
     }
 }
